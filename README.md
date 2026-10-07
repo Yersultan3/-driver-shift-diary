@@ -28,7 +28,7 @@ Requires Python 3.10+ and pip.
 ```bash
 cd server
 pip install -r requirements.txt
-uvicorn main:app --reload
+python -m uvicorn main:app --reload --port 8000
 # API available at http://localhost:8000
 # Interactive docs: http://localhost:8000/docs
 ```
@@ -57,7 +57,11 @@ flutter pub get
 flutter run
 ```
 
-> **Android emulator**: change `localhost` to `10.0.2.2` in `lib/services/api_service.dart` (line: `baseUrl = 'http://localhost:8000'`).
+> **Android emulator**: change `localhost` to `10.0.2.2` in `lib/services/api_service.dart`.  
+> **Real Android device**: forward the port via ADB before running:  
+> ```bash
+> adb reverse tcp:8000 tcp:8000
+> ```
 
 The app shows today's trips by default. Use `<` / `>` to switch days. Tap `+` to add a trip — commission is auto-set to 15% of the amount and is editable.
 
